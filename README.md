@@ -14,7 +14,7 @@ const options = {
   url: 'https://jsonplaceholder.typicode.com/posts/1',
   method: 'GET'
 }
-KR.request(options, (error, response, body) => {
+global.KR.request(options, (error, response, body) => {
   expect(response.statusCode).toBe(200);
   done();
 });
