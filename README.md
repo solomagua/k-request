@@ -3,7 +3,7 @@ k-request
 
 `npm install k-request`
 
-Usage
+Basic Usage
 -----
 
 ```javascript
@@ -106,6 +106,79 @@ Result
   }
 ]
 ```
+
+LOG Parameter
+-------------
+
+**Log Errors**
+
+```javascript
+const KR = require('k-request');
+global.KR = new KR(process.env.mongo_uri, 'porjectId');
+
+const options = {
+  url: 'https://jsonplaceholder.typicode.com/posts/2',
+  method: 'GET',
+  LOG: {
+      TYPE: KR.ERROR
+  }
+}
+global.KR.request(options, (error, response, body) => {
+  if (error)
+    console.log('Logs must be in the database...')
+});
+```
+
+**Log Status Code >= 500**
+
+```javascript
+const KR = require('k-request');
+global.KR = new KR(process.env.mongo_uri, 'porjectId');
+
+const options = {
+  url: 'https://jsonplaceholder.typicode.com/posts/3',
+  method: 'GET',
+  LOG: {
+      TYPE: KR.STATUS_CODE_GE,
+      ARG: 500
+  }
+}
+global.KR.request(options, (error, response, body) => {
+  if (response.statusCode >= 500)
+    console.log('Logs must be in the database...')
+});
+```
+
+**Log Status Code != 200**
+
+```javascript
+const KR = require('k-request');
+global.KR = new KR(process.env.mongo_uri, 'porjectId');
+
+const options = {
+  url: 'https://jsonplaceholder.typicode.com/posts/3',
+  method: 'GET',
+  LOG: {
+      TYPE: KR.STATUS_CODE_NE,
+      ARG: 200
+  }
+}
+global.KR.request(options, (error, response, body) => {
+  if (response.statusCode != 200)
+    console.log('Logs must be in the database...')
+});
+```
+LOG TYES
+-------------
+
+- ANY
+- ERROR
+- STATUS_CODE_EQ (ARG required)
+- STATUS_CODE_NE (ARG required)
+- STATUS_CODE_GE (ARG required)
+- STATUS_CODE_GT (ARG required)
+- STATUS_CODE_LE (ARG required)
+- STATUS_CODE_LT (ARG required)
 
 License
 -------------
