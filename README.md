@@ -1,6 +1,8 @@
 k-request
 ===========
 
+[![Build Status](https://travis-ci.org/solomagua/k-request.svg?branch=master)](https://travis-ci.org/solomagua/k-request)
+
 `npm install k-request`
 
 Basic Usage
