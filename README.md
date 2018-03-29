@@ -168,17 +168,17 @@ global.KR.request(options, (error, response, body) => {
     console.log('Logs must be in the database...')
 });
 ```
-LOG TYES
+LOG Types
 -------------
 
 - ANY
 - ERROR
-- STATUS_CODE_EQ (ARG required)
-- STATUS_CODE_NE (ARG required)
-- STATUS_CODE_GE (ARG required)
-- STATUS_CODE_GT (ARG required)
-- STATUS_CODE_LE (ARG required)
-- STATUS_CODE_LT (ARG required)
+- STATUS_CODE_EQ *(ARG required)*
+- STATUS_CODE_NE *(ARG required)*
+- STATUS_CODE_GE *(ARG required)*
+- STATUS_CODE_GT *(ARG required)*
+- STATUS_CODE_LE *(ARG required)*
+- STATUS_CODE_LT *(ARG required)*
 
 License
 -------------
