@@ -15,8 +15,10 @@ const options = {
   method: 'GET'
 }
 global.KR.request(options, (error, response, body) => {
-  expect(response.statusCode).toBe(200);
-  done();
+  console.log('error', error);
+  console.log('response', response);
+  console.log('body', body);
+  // Etcétera...
 });
 ```
 
