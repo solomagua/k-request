@@ -3,7 +3,7 @@ const TestDB = 'mongodb://admin:admin@ds127899.mlab.com:27899/k-request-test';
 global.KR = new KR(TestDB, 'jasmine-test');
 
 describe('Test', () => {
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
   describe('Basic', () => {
     beforeAll(() => console.log('\nBasic'));
     const options = {
@@ -83,8 +83,19 @@ describe('Test', () => {
     it('must_be_logged should be true', (done) => {
       global.KR.request(options, (error, response, body, must_be_logged) => {
         expect(must_be_logged).toBe(true);
-        done();
+        wait(() => { done(); }); // Para que de tiempo a guardar antes de finalizar el proceso.
       });
     });
   });
 });
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function wait(cb) {
+  await sleep(2000)
+  .then(() => {
+    return cb();
+  });
+}

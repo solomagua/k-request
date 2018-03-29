@@ -56,47 +56,40 @@ class KR {
               case LOG_TYPES.ERROR:
                 if (error)
                   must_be_logged = true;
-                  _doLog(requestParams, responseParams, this.mongoHandler);
                 break;
               case LOG_TYPES.STATUS_CODE_EQ:
-                if (options.LOG.ARG && response.statusCode == options.LOG.ARG)
+                if (options.LOG.ARG && response && response.statusCode && response.statusCode == options.LOG.ARG)
                   must_be_logged = true;
-                  _doLog(requestParams, responseParams, this.mongoHandler);
                 break;
               case LOG_TYPES.STATUS_CODE_NE:
-                if (options.LOG.ARG && response.statusCode != options.LOG.ARG)
+                if (options.LOG.ARG && response && response.statusCode && response.statusCode != options.LOG.ARG)
                   must_be_logged = true;
-                  _doLog(requestParams, responseParams, this.mongoHandler);
                 break;
               case LOG_TYPES.STATUS_CODE_GT:
-                if (options.LOG.ARG && response.statusCode < options.LOG.ARG)
+                if (options.LOG.ARG && response && response.statusCode && response.statusCode < options.LOG.ARG)
                   must_be_logged = true;
-                  _doLog(requestParams, responseParams, this.mongoHandler);
                 break;
               case LOG_TYPES.STATUS_CODE_GE:
-                if (options.LOG.ARG && response.statusCode <= options.LOG.ARG)
+                if (options.LOG.ARG && response && response.statusCode && response.statusCode <= options.LOG.ARG)
                   must_be_logged = true;
-                  _doLog(requestParams, responseParams, this.mongoHandler);
                 break;
               case LOG_TYPES.STATUS_CODE_LT:
-                if (options.LOG.ARG && response.statusCode > options.LOG.ARG)
+                if (options.LOG.ARG && response && response.statusCode && response.statusCode > options.LOG.ARG)
                   must_be_logged = true;
-                  _doLog(requestParams, responseParams, this.mongoHandler);
                 break;
               case LOG_TYPES.STATUS_CODE_LE:
-                if (options.LOG.ARG && response.statusCode >= options.LOG.ARG)
+                if (options.LOG.ARG && response && response.statusCode && response.statusCode >= options.LOG.ARG)
                   must_be_logged = true;
-                  _doLog(requestParams, responseParams, this.mongoHandler);
                 break;
               default:
                 must_be_logged = true;
-                _doLog(requestParams, responseParams, this.mongoHandler);
                 break;
             }
           } else {
             must_be_logged = true;
-            _doLog(requestParams, responseParams, this.mongoHandler);
           }
+          if (must_be_logged)
+            _doLog(requestParams, responseParams, this.mongoHandler);
           return callback(error, response, body, must_be_logged);
         });
       });
