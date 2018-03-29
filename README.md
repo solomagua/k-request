@@ -8,7 +8,7 @@ Usage
 
 ```javascript
 const KR = require('k-request');
-global.KR = new KonaRequest(process.env.mongo_uri, 'porjectId');
+global.KR = new KR(process.env.mongo_uri, 'porjectId');
 
 const options = {
   url: 'https://jsonplaceholder.typicode.com/posts/1',
